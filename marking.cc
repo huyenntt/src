@@ -33,8 +33,9 @@ namespace pnapi
  *
  * \note This constructor does not instantiate a Petri net object.
  */
-Marking::Marking() : net_(NULL), numOfRel_(0)
+Marking::Marking() : net_(NULL)
 {
+	name_="";
 }
 
 
@@ -48,7 +49,7 @@ Marking::Marking() : net_(NULL), numOfRel_(0)
  *               instead of reading marking from n
  */
 Marking::Marking(PetriNet & n, bool empty) :
-  net_(&n), numOfRel_(0)
+  net_(&n),name_("")
 {
   PNAPI_FOREACH(p, n.getPlaces())
   {
@@ -63,7 +64,7 @@ Marking::Marking(PetriNet & n, bool empty) :
  * \param   m the other Marking
  */
 Marking::Marking(const Marking & m) :
-  m_(m.m_), net_(m.net_), numOfRel_(0)
+  m_(m.m_), net_(m.net_),name_("")
 
 {
 }
@@ -73,7 +74,7 @@ Marking::Marking(const Marking & m) :
  * \brief   Another constructor.
  */
 Marking::Marking(std::map<const Place *, unsigned int> m, PetriNet * net) :
-  m_(m), net_(net), numOfRel_(0)
+  m_(m), net_(net), name_("")
 {
 }
 
@@ -82,7 +83,7 @@ Marking::Marking(std::map<const Place *, unsigned int> m, PetriNet * net) :
  */
 Marking::Marking(const Marking & m, PetriNet * net, 
                   std::map<const Place *, const Place *> & placeMap) :
-  net_(net), numOfRel_(0)
+  net_(net), name_("")
 {
   PNAPI_FOREACH(it, m.m_)
   {
@@ -90,6 +91,10 @@ Marking::Marking(const Marking & m, PetriNet * net,
   }
 }
 
+void Marking::setName(const std::string & st)
+{
+	name_.assign(st);
+}
 
 /*!
  * \brief   Returns the map..
@@ -180,6 +185,10 @@ Marking & Marking::getSuccessor(const Transition & t) const
   return m;
 }
 
+std::string Marking::getName() const
+{
+	return name_;
+}
 
 /*!
  * \brief   overloaded operator [] for Markings
@@ -233,7 +242,7 @@ void Marking::clear()
 /*!
  * get all activated transition from the current marking
  */
-std::set<Transition *>  Marking::getActivateTransitions() const
+std::set<Transition *>  Marking::getEnabledTransitions() const
 {
 	std::set<Transition *> tt ;
 	PNAPI_FOREACH (t,net_->getTransitions())
@@ -246,12 +255,21 @@ std::set<Transition *>  Marking::getActivateTransitions() const
 /*!
  * add new successor marking to a marking.
  */
-void Marking::addSuccessor(const Marking m)
+void Marking::addSuccessor(const Marking & m)
 {
-	numOfRel_++;
-	//rel_.assign(numOfRel_,&m);
-	rel_.at(numOfRel_)=&m;
+	rel_.push_back(&m);
+}
+/*!
+ * check if place hold a token or not
+ */
+bool Marking::check_hodingplace(Place & p)
+{
+	PNAPI_FOREACH (it,net_->getPlaces())
+		if (p.getName().compare((*it)->getName()))
+			if ((*it)->getTokenCount()!=0)
+				return true;
+	return false;
 }
 
-
 } /* namespace pnapi */
+

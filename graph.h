@@ -24,15 +24,16 @@ private:
 public:
 	Graph();
 	virtual ~Graph();
-	Graph(Marking m);
+	Graph(Marking & m);
 	//Marking * getInitialMarking();
 	//void setInitialMarking(const Marking & m);
 	int 	getNumMarking();
-	void 	addMarking(Marking & m);
-	void 	printing();
-	bool 	check_reachable_place(Place * p);
+	void 	buildGraph(Marking & root);
+	void 	print_dot(FILE * f);
+	void 	check_reachable_place(Place & p);
 	bool	check_exist(const Marking & m);
 	int 	getPostInMset(const Marking & m);
+
 
 }; // end of class
 

@@ -26,7 +26,7 @@ namespace pnapi
 
 Graph::Graph() {
 	// TODO Auto-generated constructor stub
-	init_=NULL;
+	init_=new Marking();
 }
 
 Graph::~Graph() {
@@ -34,12 +34,11 @@ Graph::~Graph() {
 	init_=NULL;
 }
 
-Graph::Graph(Marking m)
+Graph::Graph(Marking & m): init_(&m)
 {
-	init_=&m;
-//	std::vector<Marking>::iterator it=Mset_.begin();
-	Mset_.push_back(m);
+
 }
+
 
 /*Marking * Graph::getInitialMarking()
 {
@@ -82,37 +81,65 @@ int Graph::getPostInMset(const Marking & m)
 
 }
 /*!
- * add all succssor of a marking m to Mset of the graph
+ * add all succssor of marking m to Mset of the graph
  * as well as to list of relative markings rel_ for marking m.
  * @param m
  */
-void Graph::addMarking(Marking & m)
+void Graph::buildGraph(Marking & root)
 {
-	std::set<Transition *> at=m.getActivateTransitions();
-	std::cout<<"Number of activate transitions: "<< at.size()<<std::endl;
+	std::set<Transition *> at=root.getEnabledTransitions();
+	//std::cout<<"Number of activate transitions: "<< at.size()<<std::endl;
 	if (at.empty())	return;
 
 	std::set<Transition *>::iterator it;
 	for (it=at.begin();it!=at.end();++it)
 	{
-		Marking & temp= m.getSuccessor(**it);
-
+		/*
+		if (!check_exist(root.getSuccessor(**it)))
+		{
+			Mset_.push_back(root.getSuccessor(**it));
+			//Marking & tm=Mset_.at(Mset_.size()-1);
+			//root.addSuccessor(tm);
+			buildGraph(root.getSuccessor(**it));
+		}
+		*/
+		Marking & temp=root.getSuccessor(**it);
 		if (!check_exist(temp))
 		{
 			Mset_.push_back(temp);
-			m.addSuccessor(*Mset_.end());
-			addMarking(temp);
+			root.addSuccessor(temp);
+			buildGraph(temp);
 		}
-
 		else
 		{
-			int i=this->getPostInMset(temp);
-			//m.addSuccessor(Mset_.at(i));
+			//int i=this->getPostInMset(temp);
+			root.addSuccessor(temp);
 		}
 	}
 
 	return ;
 } // end of function add marking
+/*!
+ * check if place p is reachable or not (it has some tokens in a reachable marking)
+ */
+void Graph::check_reachable_place(Place & p)
+{
+	PNAPI_FOREACH(it, Mset_)
+		if (it->check_hodingplace(p))
+		{
+			std::cout<<"P is reachable"<<std::endl;
+			return;
+		}
+	std::cout<<"P is unreachable"<<std::endl;
+}
+/*!
+ * use io::dot to print out the graph with Graphviz
+ */
+void 	print_dot()
+{
+//std::cout<<io::dot<<*this;
+}
+
 
 } //end of pnapi
 

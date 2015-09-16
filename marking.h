@@ -33,9 +33,8 @@ class Marking
 private: /* private variables */
   std::map<const Place *, unsigned int> m_;
   PetriNet * net_;
-  std::vector<const Marking &> rel_;  // store related markings in the reachability graph.
-  int numOfRel_;  // number of relate markings
-  
+  std::vector<const Marking *> rel_;  // store successor markings in the reachability graph.
+  std::string name_;
 public: /* public methods */
   /*!
    * \name constructors and destructors
@@ -56,7 +55,8 @@ public: /* public methods */
   /// assignment operator
   Marking & operator=(const Marking &);
   //@}
-  //-get all transitions activated from marking m
+  // set name to a marking
+  void setName(const std::string &);
 
 
   /*!
@@ -87,16 +87,20 @@ public: /* public methods */
   bool activates(const Transition &) const;
   /// get the successor by fireing a given transition
   Marking & getSuccessor(const Transition &) const;
+  ///get name of a Marking
+  std::string getName() const;
 
-  /// get all transitions activated from marking m
-  std::set<Transition *> getActivateTransitions() const;
-  /// set the relative markings of a marking
-  void addSuccessor(const Marking m);
+  /// get all transitions enabled from marking m
+  std::set<Transition *> getEnabledTransitions() const;
+  /// add a succeesor m to current marking
+  void addSuccessor(const Marking & m);
 
   /// get writing access to the marking of a given place
   unsigned int & operator[](const Place &);
   /// get the marking of a given place
   unsigned int operator[](const Place &) const;
+  //check if place p holds some token or not
+  bool check_hodingplace(Place & p);
    //@}
 };
 
