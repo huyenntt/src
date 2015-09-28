@@ -17,7 +17,7 @@
 
 #include "config.h"
 
-#include "automaton.h"
+//#include "automaton.h"
 #include "condition.h"
 #include "exception.h"
 #include "marking.h"

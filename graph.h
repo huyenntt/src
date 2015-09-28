@@ -20,19 +20,20 @@ class Transition;
 class Graph {
 private:
 		std::vector<Marking> Mset_; // set of reachable markings
-		Marking * init_; // initial marking
+		//Marking * init_; // initial marking
 public:
 	Graph();
 	virtual ~Graph();
-	Graph(Marking & m);
+	Graph(const Marking & m);
 	//Marking * getInitialMarking();
 	//void setInitialMarking(const Marking & m);
 	int 	getNumMarking();
 	void 	buildGraph(Marking & root);
-	void 	print_dot(FILE * f);
+	void 	print_dot(char * ofile);
 	void 	check_reachable_place(Place & p);
-	bool	check_exist(const Marking & m);
+	int		check_exist(const Marking & m);
 	int 	getPostInMset(const Marking & m);
+	void 	addtodot(std::string & st, const Marking & a, const Marking & b, const Transition & t); //add an edge from a to b with the label t
 
 
 }; // end of class

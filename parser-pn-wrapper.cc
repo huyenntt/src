@@ -6,7 +6,7 @@
 
 #include "parser-pn-wrapper.h"
 
-#include "automaton.h"
+//#include "automaton.h"
 #include "marking.h"
 #include "myio.h"
 #include "petrinet.h"

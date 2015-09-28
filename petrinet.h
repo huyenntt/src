@@ -168,6 +168,7 @@ public: /* public types */
   /*!
    * \brief determining the Service Automaton => PetriNet Conerter
    */
+  /*
   enum AutomatonConverter
   {
     /// petrify
@@ -177,7 +178,7 @@ public: /* public types */
     /// transform to a state machine (using own methods)
     STATEMACHINE
   };
-  
+  */
   /*!
    * \brief Warning Flags
    * 
@@ -293,7 +294,7 @@ private: /* private variables */
   /// capacity for genet
   uint8_t genetCapacity_;
   /// converter Automaton => PetriNet
-  AutomatonConverter automatonConverter_;
+ // AutomatonConverter automatonConverter_;
   //@}
   
   /*!
@@ -329,7 +330,7 @@ public: /* public methods */
   /// standard constructor
   PetriNet();
   /// constructor Automaton => Petri net
-  PetriNet(const Automaton &, AutomatonConverter = STATEMACHINE, uint8_t = 2);
+ // PetriNet(const Automaton &, AutomatonConverter = STATEMACHINE, uint8_t = 2);
   /// copy constructor
   PetriNet(const PetriNet &);
   /// destructor

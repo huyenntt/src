@@ -4,7 +4,7 @@
 
 #include "config.h"
 
-#include "automaton.h"
+//#include "automaton.h"
 #include "marking.h"
 #include "myio.h"
 #include "parser.h"

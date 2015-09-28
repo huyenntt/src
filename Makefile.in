@@ -41,10 +41,9 @@ DIST_COMMON = $(include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/bison-wrapper.sh.in \
 	$(srcdir)/config.h.in $(srcdir)/libpnapi.pc.in \
 	$(srcdir)/pnapi.cc.in parser-lola-lexer.cc parser-lola.cc \
-	parser-owfn-lexer.cc parser-owfn.cc parser-pn-lexer.cc \
-	parser-pn.cc parser-pnml-lexer.cc parser-pnml.cc \
-	parser-sa-lexer.cc parser-sa.cc parser-woflan-lexer.cc \
-	parser-woflan.cc
+	parser-pn-lexer.cc parser-pn.cc \
+	parser-pnml-lexer.cc parser-pnml.cc \
+	
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
@@ -84,15 +83,13 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(pkgconfigdir)" \
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libpnapi_la_LIBADD =
 am_libpnapi_la_OBJECTS = parser-lola.lo parser-lola-lexer.lo \
-	parser-lola-wrapper.lo parser-owfn.lo parser-owfn-lexer.lo \
-	parser-owfn-wrapper.lo parser-pn.lo parser-pn-lexer.lo \
-	parser-pn-wrapper.lo parser-pnml.lo parser-pnml-lexer.lo \
-	parser-pnml-wrapper.lo parser-sa.lo parser-sa-lexer.lo \
-	parser-sa-wrapper.lo parser-woflan.lo parser-woflan-lexer.lo \
-	parser-woflan-wrapper.lo pnapi.lo automaton.lo component.lo \
+	parser-lola-wrapper.lo \
+	parser-pn.lo parser-pn-lexer.lo parser-pn-wrapper.lo \
+	parser-pnml.lo parser-pnml-lexer.lo parser-pnml-wrapper.lo \
+	pnapi.lo component.lo \
 	condition.lo exception.lo formula.lo graph.lo interface.lo marking.lo \
 	myio.lo io-format.lo Output.lo parser.lo petrinet-pn.lo \
-	petrinet-reduction.lo petrinet.lo port.lo state.lo verbose.lo
+	petrinet-reduction.lo petrinet.lo port.lo verbose.lo
 libpnapi_la_OBJECTS = $(am_libpnapi_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -306,14 +303,10 @@ lib_LTLIBRARIES = libpnapi.la
 # [CUSTOMER_B_SRC] this line is needed to build a customer Makefile. Do not remove!
 libpnapi_la_SOURCES = \
     parser-lola.yy parser-lola-lexer.ll parser-lola-wrapper.h parser-lola-wrapper.cc \
-    parser-owfn.yy parser-owfn-lexer.ll parser-owfn-wrapper.h parser-owfn-wrapper.cc \
     parser-pn.yy parser-pn-lexer.ll parser-pn-wrapper.h parser-pn-wrapper.cc \
     parser-pnml.yy parser-pnml-lexer.ll parser-pnml-wrapper.h parser-pnml-wrapper.cc \
-    parser-sa.yy parser-sa-lexer.ll parser-sa-wrapper.h parser-sa-wrapper.cc \
-    parser-woflan.yy parser-woflan-lexer.ll parser-woflan-wrapper.h parser-woflan-wrapper.cc \
     FlexLexer.h \
     pnapi.h pnapi.cc pnapi-assert.h \
-    automaton.h automaton.cc\
     component.h component.cc \
     condition.h condition.cc \
     exception.h exception.cc \
@@ -328,7 +321,6 @@ libpnapi_la_SOURCES = \
     petrinet-reduction.cc \
     petrinet.h petrinet.cc \
     port.h port.cc \
-    state.h state.cc \
     util.h \
     verbose.h verbose.cc
 
@@ -477,7 +469,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Output.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/automaton.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/component.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/condition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/exception.Plo@am__quote@
@@ -490,28 +481,18 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-lola-lexer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-lola-wrapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-lola.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-owfn-lexer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-owfn-wrapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-owfn.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-pn-lexer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-pn-wrapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-pn.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-pnml-lexer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-pnml-wrapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-pnml.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-sa-lexer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-sa-wrapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-sa.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-woflan-lexer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-woflan-wrapper.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser-woflan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/parser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/petrinet-pn.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/petrinet-reduction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/petrinet.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pnapi.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/port.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/state.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/verbose.Plo@am__quote@
 
 .cc.o:
@@ -709,16 +690,10 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 	-rm -f parser-lola-lexer.cc
 	-rm -f parser-lola.cc
-	-rm -f parser-owfn-lexer.cc
-	-rm -f parser-owfn.cc
 	-rm -f parser-pn-lexer.cc
 	-rm -f parser-pn.cc
 	-rm -f parser-pnml-lexer.cc
 	-rm -f parser-pnml.cc
-	-rm -f parser-sa-lexer.cc
-	-rm -f parser-sa.cc
-	-rm -f parser-woflan-lexer.cc
-	-rm -f parser-woflan.cc
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
 clean: clean-am

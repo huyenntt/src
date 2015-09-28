@@ -4,8 +4,8 @@ pnapi.lo: pnapi.cc pnapi.h config.h /usr/include/c++/4.7/cassert \
  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
- /usr/include/x86_64-linux-gnu/gnu/stubs-64.h automaton.h myio.h \
- exception.h /usr/include/c++/4.7/string \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h condition.h formula.h \
+ myio.h exception.h /usr/include/c++/4.7/string \
  /usr/include/c++/4.7/x86_64-linux-gnu/bits/c++config.h \
  /usr/include/c++/4.7/x86_64-linux-gnu/bits/os_defines.h \
  /usr/include/c++/4.7/x86_64-linux-gnu/bits/cpu_defines.h \
@@ -96,10 +96,10 @@ pnapi.lo: pnapi.cc pnapi.h config.h /usr/include/c++/4.7/cassert \
  /usr/include/c++/4.7/bits/stl_multimap.h /usr/include/c++/4.7/vector \
  /usr/include/c++/4.7/bits/stl_vector.h \
  /usr/include/c++/4.7/bits/stl_bvector.h \
- /usr/include/c++/4.7/bits/vector.tcc Output.h petrinet.h component.h \
- condition.h formula.h interface.h port.h /usr/include/inttypes.h \
+ /usr/include/c++/4.7/bits/vector.tcc marking.h petrinet.h component.h \
+ interface.h port.h /usr/include/inttypes.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.7/include/stdint.h /usr/include/stdint.h \
- state.h marking.h graph.h
+ graph.h
 
 pnapi.h:
 
@@ -121,7 +121,9 @@ config.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
-automaton.h:
+condition.h:
+
+formula.h:
 
 myio.h:
 
@@ -369,15 +371,11 @@ util.h:
 
 /usr/include/c++/4.7/bits/vector.tcc:
 
-Output.h:
+marking.h:
 
 petrinet.h:
 
 component.h:
-
-condition.h:
-
-formula.h:
 
 interface.h:
 
@@ -388,9 +386,5 @@ port.h:
 /usr/lib/gcc/x86_64-linux-gnu/4.7/include/stdint.h:
 
 /usr/include/stdint.h:
-
-state.h:
-
-marking.h:
 
 graph.h:

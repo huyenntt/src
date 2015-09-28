@@ -15,7 +15,7 @@
 
 #include "petrinet.h"
 #include "port.h"
-#include "state.h"
+//#include "state.h"
 #include "exception.h"
 
 #include <sstream>
@@ -93,29 +93,33 @@ namespace lola
 PetriNet parse(std::istream &);
 } /* namespace lola */
 
-namespace owfn
+/*namespace owfn
 {
 /// parses stream contents with the associated parser
 PetriNet parse(std::istream &);
-} /* namespace owfn */
-
+} /* namespace owfn
+*/
 namespace pnml
 {
 /// parses stream contents with the associated parser
 PetriNet parse(std::istream &);
 } /* namespace pnml */
 
-namespace sa
+/*namespace sa
 {
 /// parses stream contents with the associated parser
 Automaton parse(std::istream &);
-} /* namespace sa */
+} // namespace sa
+*/
 
+/*
 namespace woflan
 {
 /// parses stream contents with the associated parser
 PetriNet parse(std::istream &);
-} /* namespace woflan */
+}
+*/
+/* namespace woflan */
 
 } /* namespace parser */
 

@@ -6,10 +6,10 @@
 
 #include "pnapi-assert.h"
 
-#include "automaton.h"
+//#include "automaton.h"
 #include "interface.h"
 #include "petrinet.h"
-#include "state.h"
+//#include "state.h"
 #include "myio.h"
 #include "util.h"
 
@@ -79,14 +79,6 @@ std::ostream & output(std::ostream & os, const PetriNet & net)
              << "|F|= " << arcCount);
 }
 
-/*!
- * \brief write service automaton statistics
- */
-std::ostream & output(std::ostream & os, const Automaton & sa)
-{
-  return os << "|Q|= " << sa.states_.size() << "  "
-            << "|E|= " << sa.edges_.size();
-}
 
 } /* namespace __stat */
 
@@ -481,12 +473,13 @@ std::string getLabelName(std::ostream & os, const Label & l, bool withSuffix)
 /*!
  * \brief service automaton output
  */
+/*
 std::ostream & output(std::ostream & os, const Automaton & sa)
 {
   os << "Digraph ServiceAutomaton {\n"
      << "{\n"
      << "q0 [style=invis];\n";
-  
+
   for(int i = 0; i < (int) sa.states_.size(); ++i)
   {
     if (sa.states_[i]->isFinal())
@@ -494,20 +487,21 @@ std::ostream & output(std::ostream & os, const Automaton & sa)
     else
       os << sa.states_[i]->getName() << ";\n";
   }
-  
+
   os << "}\n"
      << "{\n"
      << "q0 -> " << (*sa.getInitialStates().begin())->getName() << ";\n";
-  
+
   for(int i = 0; i < (int) sa.edges_.size(); ++i)
   {
     os << sa.edges_[i]->getSource().getName() << " -> "
        << sa.edges_[i]->getDestination().getName() << " [label=\""
        << sa.edges_[i]->getLabel() <<"\"];\n";
   }
-  
+
   return (os << "}\n}\n");
 }
+*/
 
 /*!
  * \brief negation output
@@ -1500,41 +1494,23 @@ std::ostream & output(std::ostream & os, const formula::FormulaLessEqual & f)
 /*!
  * \brief writes output type to stream 
  */
+/*
 std::ios_base & sa(std::ios_base &base)
 {
   util::FormatData::data(base) = util::SA;
   return base;
 }
-
-
+*/
+/*
 namespace __sa
 {
 
-/*!
- * \brief service automaton output
- */
-std::ostream & output(std::ostream & os, const Automaton & sa)
-{
-  os << "INTERFACE" << endl << delim(", ")
-     << "  INPUT\n    "
-     << sa.getInputLabels()
-     << ";\n"
-     << "  OUTPUT\n    "
-     << sa.getOutputLabels()
-     << ";\n"
-     << "  SYNCHRONOUS\n    "
-     << sa.getSynchronousLabels()
-     << ";\n\n"
-     << "NODES\n"
-     << delim("\n")
-     << sa.states_;
-
-  return (os << endl);
-}
+*/
 
 /*!
  * \brief state output
  */
+/*
 std::ostream & output(std::ostream & os, const State & s)
 {
   os << "  " << s.getName();
@@ -1549,15 +1525,19 @@ std::ostream & output(std::ostream & os, const State & s)
   return (os << endl << s.getPostsetEdges());
 }
 
+*/
 /*!
  * \brief edge output
  */
+/*
 std::ostream & output(std::ostream & os, const Edge & e)
 {
   return (os << "    " << e.getLabel() << " -> " << e.getDestination().getName());
 }
+*/
 
-} /* namespace __sa */
+//} /* namespace __sa */
+
 
 /*************************************************************************
  ***** Woflan output

@@ -41,10 +41,9 @@ DIST_COMMON = $(include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/bison-wrapper.sh.in \
 	$(srcdir)/config.h.in $(srcdir)/libpnapi.pc.in \
 	$(srcdir)/pnapi.cc.in parser-lola-lexer.cc parser-lola.cc \
-	parser-owfn-lexer.cc parser-owfn.cc parser-pn-lexer.cc \
-	parser-pn.cc parser-pnml-lexer.cc parser-pnml.cc \
-	parser-sa-lexer.cc parser-sa.cc parser-woflan-lexer.cc \
-	parser-woflan.cc
+	parser-pn-lexer.cc parser-pn.cc \
+	parser-pnml-lexer.cc parser-pnml.cc \
+	
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
@@ -84,15 +83,13 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(pkgconfigdir)" \
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libpnapi_la_LIBADD =
 am_libpnapi_la_OBJECTS = parser-lola.lo parser-lola-lexer.lo \
-	parser-lola-wrapper.lo parser-owfn.lo parser-owfn-lexer.lo \
-	parser-owfn-wrapper.lo parser-pn.lo parser-pn-lexer.lo \
-	parser-pn-wrapper.lo parser-pnml.lo parser-pnml-lexer.lo \
-	parser-pnml-wrapper.lo parser-sa.lo parser-sa-lexer.lo \
-	parser-sa-wrapper.lo parser-woflan.lo parser-woflan-lexer.lo \
-	parser-woflan-wrapper.lo pnapi.lo automaton.lo component.lo \
+	parser-lola-wrapper.lo \
+	parser-pn.lo parser-pn-lexer.lo parser-pn-wrapper.lo \
+	parser-pnml.lo parser-pnml-lexer.lo parser-pnml-wrapper.lo \
+	pnapi.lo component.lo \
 	condition.lo exception.lo formula.lo graph.lo interface.lo marking.lo \
 	myio.lo io-format.lo Output.lo parser.lo petrinet-pn.lo \
-	petrinet-reduction.lo petrinet.lo port.lo state.lo verbose.lo
+	petrinet-reduction.lo petrinet.lo port.lo verbose.lo
 libpnapi_la_OBJECTS = $(am_libpnapi_la_OBJECTS)
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
@@ -162,15 +159,15 @@ HEADERS = $(include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /users/tnguyen/devel/RGraph/build-aux/missing --run aclocal-1.11
-AMTAR = ${SHELL} /users/tnguyen/devel/RGraph/build-aux/missing --run tar
+ACLOCAL = ${SHELL} /users/tnguyen/devel/newSMC/build-aux/missing --run aclocal-1.11
+AMTAR = ${SHELL} /users/tnguyen/devel/newSMC/build-aux/missing --run tar
 AM_DEFAULT_VERBOSITY = 0
 AR = ar
 AS = as
-AUTOCONF = ${SHELL} /users/tnguyen/devel/RGraph/build-aux/missing --run autoconf
-AUTOHEADER = ${SHELL} /users/tnguyen/devel/RGraph/build-aux/missing --run autoheader
-AUTOM4TE = ${SHELL} /users/tnguyen/devel/RGraph/build-aux/missing --run autom4te
-AUTOMAKE = ${SHELL} /users/tnguyen/devel/RGraph/build-aux/missing --run automake-1.11
+AUTOCONF = ${SHELL} /users/tnguyen/devel/newSMC/build-aux/missing --run autoconf
+AUTOHEADER = ${SHELL} /users/tnguyen/devel/newSMC/build-aux/missing --run autoheader
+AUTOM4TE = ${SHELL} /users/tnguyen/devel/newSMC/build-aux/missing --run autom4te
+AUTOMAKE = ${SHELL} /users/tnguyen/devel/newSMC/build-aux/missing --run automake-1.11
 AWK = gawk
 BISON = /usr/bin/bison
 CC = gcc
@@ -197,10 +194,10 @@ EXEEXT =
 FGREP = /bin/grep -F
 FIONA = not found
 GENET = not found
-GENGETOPT = ${SHELL} /users/tnguyen/devel/RGraph/build-aux/missing --run gengetopt
+GENGETOPT = ${SHELL} /users/tnguyen/devel/newSMC/build-aux/missing --run gengetopt
 GREP = /bin/grep
 HEAD = /usr/bin/head
-HELP2MAN = ${SHELL} /users/tnguyen/devel/RGraph/build-aux/missing --run help2man
+HELP2MAN = ${SHELL} /users/tnguyen/devel/newSMC/build-aux/missing --run help2man
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
@@ -219,7 +216,7 @@ LN_S = ln -s
 LOLA = 
 LTLIBOBJS = 
 MAKE = /usr/bin/make
-MAKEINFO = ${SHELL} /users/tnguyen/devel/RGraph/build-aux/missing --run makeinfo
+MAKEINFO = ${SHELL} /users/tnguyen/devel/newSMC/build-aux/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 NM = /usr/bin/nm -B
 NMEDIT = 
@@ -248,10 +245,10 @@ VERSION_SVN = exported
 WGET = /usr/bin/wget
 YACC = bison -y
 YFLAGS = 
-abs_builddir = /users/tnguyen/devel/RGraph/src
-abs_srcdir = /users/tnguyen/devel/RGraph/src
-abs_top_builddir = /users/tnguyen/devel/RGraph
-abs_top_srcdir = /users/tnguyen/devel/RGraph
+abs_builddir = /users/tnguyen/devel/newSMC/src
+abs_srcdir = /users/tnguyen/devel/newSMC/src
+abs_top_builddir = /users/tnguyen/devel/newSMC
+abs_top_srcdir = /users/tnguyen/devel/newSMC
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 ac_ct_DUMPBIN = 
@@ -280,7 +277,7 @@ host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include/pnapi
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /users/tnguyen/devel/RGraph/build-aux/install-sh
+install_sh = ${SHELL} /users/tnguyen/devel/newSMC/build-aux/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -306,14 +303,10 @@ lib_LTLIBRARIES = libpnapi.la
 # [CUSTOMER_B_SRC] this line is needed to build a customer Makefile. Do not remove!
 libpnapi_la_SOURCES = \
     parser-lola.yy parser-lola-lexer.ll parser-lola-wrapper.h parser-lola-wrapper.cc \
-    parser-owfn.yy parser-owfn-lexer.ll parser-owfn-wrapper.h parser-owfn-wrapper.cc \
     parser-pn.yy parser-pn-lexer.ll parser-pn-wrapper.h parser-pn-wrapper.cc \
     parser-pnml.yy parser-pnml-lexer.ll parser-pnml-wrapper.h parser-pnml-wrapper.cc \
-    parser-sa.yy parser-sa-lexer.ll parser-sa-wrapper.h parser-sa-wrapper.cc \
-    parser-woflan.yy parser-woflan-lexer.ll parser-woflan-wrapper.h parser-woflan-wrapper.cc \
     FlexLexer.h \
     pnapi.h pnapi.cc pnapi-assert.h \
-    automaton.h automaton.cc\
     component.h component.cc \
     condition.h condition.cc \
     exception.h exception.cc \
@@ -328,7 +321,6 @@ libpnapi_la_SOURCES = \
     petrinet-reduction.cc \
     petrinet.h petrinet.cc \
     port.h port.cc \
-    state.h state.cc \
     util.h \
     verbose.h verbose.cc
 
@@ -477,7 +469,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/Output.Plo
-include ./$(DEPDIR)/automaton.Plo
 include ./$(DEPDIR)/component.Plo
 include ./$(DEPDIR)/condition.Plo
 include ./$(DEPDIR)/exception.Plo
@@ -490,28 +481,18 @@ include ./$(DEPDIR)/myio.Plo
 include ./$(DEPDIR)/parser-lola-lexer.Plo
 include ./$(DEPDIR)/parser-lola-wrapper.Plo
 include ./$(DEPDIR)/parser-lola.Plo
-include ./$(DEPDIR)/parser-owfn-lexer.Plo
-include ./$(DEPDIR)/parser-owfn-wrapper.Plo
-include ./$(DEPDIR)/parser-owfn.Plo
 include ./$(DEPDIR)/parser-pn-lexer.Plo
 include ./$(DEPDIR)/parser-pn-wrapper.Plo
 include ./$(DEPDIR)/parser-pn.Plo
 include ./$(DEPDIR)/parser-pnml-lexer.Plo
 include ./$(DEPDIR)/parser-pnml-wrapper.Plo
 include ./$(DEPDIR)/parser-pnml.Plo
-include ./$(DEPDIR)/parser-sa-lexer.Plo
-include ./$(DEPDIR)/parser-sa-wrapper.Plo
-include ./$(DEPDIR)/parser-sa.Plo
-include ./$(DEPDIR)/parser-woflan-lexer.Plo
-include ./$(DEPDIR)/parser-woflan-wrapper.Plo
-include ./$(DEPDIR)/parser-woflan.Plo
 include ./$(DEPDIR)/parser.Plo
 include ./$(DEPDIR)/petrinet-pn.Plo
 include ./$(DEPDIR)/petrinet-reduction.Plo
 include ./$(DEPDIR)/petrinet.Plo
 include ./$(DEPDIR)/pnapi.Plo
 include ./$(DEPDIR)/port.Plo
-include ./$(DEPDIR)/state.Plo
 include ./$(DEPDIR)/verbose.Plo
 
 .cc.o:
@@ -709,16 +690,10 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 	-rm -f parser-lola-lexer.cc
 	-rm -f parser-lola.cc
-	-rm -f parser-owfn-lexer.cc
-	-rm -f parser-owfn.cc
 	-rm -f parser-pn-lexer.cc
 	-rm -f parser-pn.cc
 	-rm -f parser-pnml-lexer.cc
 	-rm -f parser-pnml.cc
-	-rm -f parser-sa-lexer.cc
-	-rm -f parser-sa.cc
-	-rm -f parser-woflan-lexer.cc
-	-rm -f parser-woflan.cc
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
 clean: clean-am

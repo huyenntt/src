@@ -3,14 +3,10 @@ lib_LTLIBRARIES = libpnapi.la
 # [CUSTOMER_B_SRC] this line is needed to build a customer Makefile. Do not remove!
 libpnapi_la_SOURCES = \
     parser-lola.yy parser-lola-lexer.ll parser-lola-wrapper.h parser-lola-wrapper.cc \
-    parser-owfn.yy parser-owfn-lexer.ll parser-owfn-wrapper.h parser-owfn-wrapper.cc \
     parser-pn.yy parser-pn-lexer.ll parser-pn-wrapper.h parser-pn-wrapper.cc \
     parser-pnml.yy parser-pnml-lexer.ll parser-pnml-wrapper.h parser-pnml-wrapper.cc \
-    parser-sa.yy parser-sa-lexer.ll parser-sa-wrapper.h parser-sa-wrapper.cc \
-    parser-woflan.yy parser-woflan-lexer.ll parser-woflan-wrapper.h parser-woflan-wrapper.cc \
     FlexLexer.h \
     pnapi.h pnapi.cc pnapi-assert.h \
-    automaton.h automaton.cc\
     component.h component.cc \
     condition.h condition.cc \
     exception.h exception.cc \
@@ -25,7 +21,6 @@ libpnapi_la_SOURCES = \
     petrinet-reduction.cc \
     petrinet.h petrinet.cc \
     port.h port.cc \
-    state.h state.cc \
     util.h \
     verbose.h verbose.cc
 # [CUSTOMER_E_SRC] this line is needed to build a customer Makefile. Do not remove!

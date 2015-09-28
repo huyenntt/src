@@ -33,9 +33,10 @@ namespace pnapi
  *
  * \note This constructor does not instantiate a Petri net object.
  */
-Marking::Marking() : net_(NULL)
+Marking::Marking() : net_(NULL), rel_()
 {
 	name_="";
+	//rel_= std::vector <const Marking * >();
 }
 
 
@@ -49,12 +50,13 @@ Marking::Marking() : net_(NULL)
  *               instead of reading marking from n
  */
 Marking::Marking(PetriNet & n, bool empty) :
-  net_(&n),name_("")
+  net_(&n),name_("M0"),  rel_()
 {
-  PNAPI_FOREACH(p, n.getPlaces())
-  {
-    m_[*p] = empty ? 0 : ((*p)->getTokenCount());
-  }
+	//rel_=std::vector <Marking * >();
+	PNAPI_FOREACH(p, n.getPlaces())
+	{
+		m_[*p] = empty ? 0 : ((*p)->getTokenCount());
+	}
 }
 
 
@@ -64,9 +66,12 @@ Marking::Marking(PetriNet & n, bool empty) :
  * \param   m the other Marking
  */
 Marking::Marking(const Marking & m) :
-  m_(m.m_), net_(m.net_),name_("")
+  m_(m.m_), net_(m.net_),name_(m.name_)
 
 {
+	rel_=m.rel_;
+	//for (std::vector<Marking *>::iterator i=m.rel_.begin(); i!=m.rel_.end();++i)
+		//rel_.at(i) = m.rel_.at(i);
 }
 
 
@@ -74,8 +79,10 @@ Marking::Marking(const Marking & m) :
  * \brief   Another constructor.
  */
 Marking::Marking(std::map<const Place *, unsigned int> m, PetriNet * net) :
-  m_(m), net_(net), name_("")
+  m_(m), net_(net), name_(""),  rel_()
 {
+	//rel_=std::vector <Marking * >();
+
 }
 
 /*!
@@ -83,12 +90,13 @@ Marking::Marking(std::map<const Place *, unsigned int> m, PetriNet * net) :
  */
 Marking::Marking(const Marking & m, PetriNet * net, 
                   std::map<const Place *, const Place *> & placeMap) :
-  net_(net), name_("")
+  net_(net), name_(m.name_),  rel_()
 {
   PNAPI_FOREACH(it, m.m_)
   {
     m_[placeMap[it->first]] = it->second;
   }
+ // rel_=std::vector <Marking * >();
 }
 
 void Marking::setName(const std::string & st)
@@ -103,7 +111,6 @@ const std::map<const Place *, unsigned int> & Marking::getMap() const
 {
   return m_;
 }
-
 
 /*!
  * \brief   Returns the Petri net laying under the marking
@@ -182,6 +189,7 @@ Marking & Marking::getSuccessor(const Transition & t) const
     m[*static_cast<Place *>(*p)] += net_->findArc(t, **p)->getWeight();
   }
 
+  m.rel_.clear();
   return m;
 }
 
@@ -197,7 +205,13 @@ unsigned int & Marking::operator [](const Place & offset)
 {
   return m_[&offset];
 }
-
+/*!
+ * return all relevant marking (successors) of a marking
+ */
+std::vector <std::string> & Marking::getRelMarkings()
+{
+	return rel_;
+}
 /*!
  * \brief   overloaded operator [] for Markings
  */
@@ -226,8 +240,11 @@ Marking & Marking::operator=(const Marking & m)
   PNAPI_ASSERT(this != &m);
   
   m_ = std::map<const Place *, unsigned int>(); // fixing cppcheck error
+ // name_=m.name_;
+  rel_.clear();
+  //net_=m.net_;
   this->~Marking();
-  return *new (this) Marking(m);
+  return *new Marking(m);// *new (this) Marking(m);
 }
 
 
@@ -253,11 +270,12 @@ std::set<Transition *>  Marking::getEnabledTransitions() const
 	return tt;
 }
 /*!
- * add new successor marking to a marking.
+ * add new successor to a marking.
  */
-void Marking::addSuccessor(const Marking & m)
+void Marking::addSuccessor (std::string id)
 {
-	rel_.push_back(&m);
+	rel_.push_back(id);
+
 }
 /*!
  * check if place hold a token or not
@@ -269,6 +287,14 @@ bool Marking::check_hodingplace(Place & p)
 			if ((*it)->getTokenCount()!=0)
 				return true;
 	return false;
+}
+/*!
+ * copy relative markings of m to current marking
+ */
+
+void Marking::copyRel(Marking & m)
+{
+	rel_.insert(rel_.end(),m.rel_.begin(),m.rel_.end());
 }
 
 } /* namespace pnapi */

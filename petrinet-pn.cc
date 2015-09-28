@@ -11,7 +11,7 @@
 
 #include "pnapi-assert.h"
 
-#include "automaton.h"
+//#include "automaton.h"
 #include "Output.h"
 #include "parser-pn-wrapper.h"
 #include "util.h"
@@ -42,7 +42,7 @@ namespace pnapi
  * \param ac automaton converter to be used
  * \param capacity to be passed to Genet when using genet
  */
-PetriNet::PetriNet(const Automaton & sa, AutomatonConverter ac, uint8_t capacity) :
+/*PetriNet::PetriNet(const Automaton & sa, AutomatonConverter ac, uint8_t capacity) :
   observer_(*this), warnings_(0), reductionCache_(NULL),
   genetCapacity_(capacity), automatonConverter_(ac), interface_(*this)
 {
@@ -65,7 +65,7 @@ PetriNet::PetriNet(const Automaton & sa, AutomatonConverter ac, uint8_t capacity
   createFromSTG(edgeLabels, out.name(), input, output, synchronous);
 }
 
-
+*/
 
 
 /*!
@@ -79,7 +79,7 @@ PetriNet::PetriNet(const Automaton & sa, AutomatonConverter ac, uint8_t capacity
  * \pre       edgeLabels is empty
  * \post      edgeLabels stores a mapping from event number to event label
  */
-void Automaton::printToTransitionGraph(std::vector<std::string> & edgeLabels, 
+/*void Automaton::printToTransitionGraph(std::vector<std::string> & edgeLabels,
                                        util::Output & out,
                                        PetriNet::AutomatonConverter converter) const
 {
@@ -159,7 +159,7 @@ void Automaton::printToTransitionGraph(std::vector<std::string> & edgeLabels,
   std::string TGGraphString = TGStringStream.str();
   out.stream() << "\n" << TGGraphString << std::endl;
 }
-
+*/
 
 /*!
  * \brief helper function for STG2oWFN
@@ -172,6 +172,7 @@ void Automaton::printToTransitionGraph(std::vector<std::string> & edgeLabels,
  * 
  * \post  delimeter ('/' or '_') will be replaced by ':')
  */
+/*
 std::string PetriNet::remap(const std::string & edge, std::vector<std::string> & edgeLabels)
 {
   char delimeter = ((automatonConverter_ == PETRIFY) ? '/' : '_');
@@ -190,7 +191,7 @@ std::string PetriNet::remap(const std::string & edge, std::vector<std::string> &
   return edgeLabels[index] + affix;
 }
 
-
+*/
 
 /*!
  * \brief   creates a petri net from an STG file
@@ -207,6 +208,7 @@ std::string PetriNet::remap(const std::string & edge, std::vector<std::string> &
  * \todo maybe just copy label names instead of reading dummy transitions
  *
  */
+/*
 void PetriNet::createFromSTG(std::vector<std::string> & edgeLabels,
                              const std::string & fileName,
                              std::set<std::string> & inputLabels,
@@ -460,5 +462,5 @@ void PetriNet::createFromSTG(std::vector<std::string> & edgeLabels,
   // cleaning up
   remove(pnFileName.c_str());
 }
-
+*/
 } /* namespace pnapi */

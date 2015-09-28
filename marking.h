@@ -11,6 +11,8 @@
 
 #include <map>
 #include <vector>
+#include <string>
+#include <set>
 
 namespace pnapi
 {
@@ -33,7 +35,7 @@ class Marking
 private: /* private variables */
   std::map<const Place *, unsigned int> m_;
   PetriNet * net_;
-  std::vector<const Marking *> rel_;  // store successor markings in the reachability graph.
+  std::vector<std::string> rel_;  // store successor markings in the reachability graph.
   std::string name_;
 public: /* public methods */
   /*!
@@ -89,11 +91,12 @@ public: /* public methods */
   Marking & getSuccessor(const Transition &) const;
   ///get name of a Marking
   std::string getName() const;
+  std::vector <std::string> & getRelMarkings();
 
   /// get all transitions enabled from marking m
   std::set<Transition *> getEnabledTransitions() const;
   /// add a succeesor m to current marking
-  void addSuccessor(const Marking & m);
+  void addSuccessor(std::string id);
 
   /// get writing access to the marking of a given place
   unsigned int & operator[](const Place &);
@@ -101,6 +104,7 @@ public: /* public methods */
   unsigned int operator[](const Place &) const;
   //check if place p holds some token or not
   bool check_hodingplace(Place & p);
+  void copyRel(Marking & m);
    //@}
 };
 

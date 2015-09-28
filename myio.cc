@@ -6,7 +6,7 @@
 
 #include "pnapi-assert.h"
 
-#include "automaton.h"
+//#include "automaton.h"
 #include "myio.h"
 #include "parser.h"
 #include "util.h"
@@ -69,13 +69,14 @@ std::istream & operator>>(std::istream & is, PetriNet & net) throw (exception::I
 {
   switch (util::FormatData::data(is))
   {
-  case util::OWFN:
+ /* case util::OWFN:
   {
     net = parser::owfn::parse(is);
 
     net.meta_ = util::MetaData::data(is);
     break;
   }
+  */
 
   case util::PNML:
   {
@@ -92,7 +93,7 @@ std::istream & operator>>(std::istream & is, PetriNet & net) throw (exception::I
     net.meta_ = util::MetaData::data(is);
     break;
   }
-
+/*
   case util::WOFLAN:
   {
     net = parser::woflan::parse(is);
@@ -100,7 +101,8 @@ std::istream & operator>>(std::istream & is, PetriNet & net) throw (exception::I
     net.meta_ = util::MetaData::data(is);
     break;
   }
-  
+  */
+
   default: PNAPI_ASSERT(false);  // unsupported input format
   }
 
@@ -114,6 +116,7 @@ std::istream & operator>>(std::istream & is, PetriNet & net) throw (exception::I
  * Streams the Automaton object to a given output stream
  * using the stream format (see pnapi::io).
  */
+/*
 std::ostream & operator<<(std::ostream & os, const Automaton & sa)
 {
   switch (util::FormatData::data(os))
@@ -126,11 +129,12 @@ std::ostream & operator<<(std::ostream & os, const Automaton & sa)
 
   return os;
 }
-
+*/
 
 /*!
  * \brief Reads an Automaton file and creates an object from it.
  */
+/*
 std::istream & operator>>(std::istream &is, Automaton &sa)
 {
   switch (util::FormatData::data(is))
@@ -140,12 +144,13 @@ std::istream & operator>>(std::istream &is, Automaton &sa)
     sa = parser::sa::parse(is);
     break;
   }
-  default: PNAPI_ASSERT(false); /* unsupported format */
+  default: PNAPI_ASSERT(false); //unsupported format
   }
 
   return is;
 }
 
+*/
 
 /*************************************************************************
  ***** Internal I/O Implementation
@@ -165,9 +170,9 @@ std::ostream & operator<<(std::ostream & os, const pnapi::Arc & arc)
   {
   case DOT:  return __dot::output(os, arc);
   case LOLA: return __lola::output(os, arc);
-  case OWFN: return __owfn::output(os, arc);
+ // case OWFN: return __owfn::output(os, arc);
   case PNML: return __pnml::output(os, arc);
-  case WOFLAN: return __woflan::output(os, arc);
+  //case WOFLAN: return __woflan::output(os, arc);
 
   default: PNAPI_ASSERT(false);
   }
@@ -182,9 +187,9 @@ std::ostream & operator<<(std::ostream & os, const pnapi::Place & p)
   {
   case DOT:  return __dot::output(os, p);
   case LOLA: return __lola::output(os, p);
-  case OWFN: return __owfn::output(os, p);
+//  case OWFN: return __owfn::output(os, p);
   case PNML: return __pnml::output(os, p);
-  case WOFLAN: return __woflan::output(os, p);
+ // case WOFLAN: return __woflan::output(os, p);
 
   default: PNAPI_ASSERT(false);
   }
@@ -199,9 +204,9 @@ std::ostream & operator<<(std::ostream & os, const pnapi::Transition & t)
   {
   case DOT:  return __dot::output(os, t);
   case LOLA: return __lola::output(os, t);
-  case OWFN: return __owfn::output(os, t);
+ // case OWFN: return __owfn::output(os, t);
   case PNML: return __pnml::output(os, t);
-  case WOFLAN: return __woflan::output(os, t);
+ // case WOFLAN: return __woflan::output(os, t);
 
   default: PNAPI_ASSERT(false);
   }
@@ -233,7 +238,7 @@ std::ostream & operator<<(std::ostream & os, const Port & p)
   switch (FormatData::data(os))
   {
   case DOT:  return __dot::output(os, p);
-  case OWFN: return __owfn::output(os, p);
+ // case OWFN: return __owfn::output(os, p);
   case PNML: return __pnml::output(os, p);
 
   default: PNAPI_ASSERT(false);
@@ -249,7 +254,7 @@ std::ostream & operator<<(std::ostream & os, const Label & l)
   switch (FormatData::data(os))
   {
   case DOT:  return __dot::output(os, l);
-  case OWFN: return __owfn::output(os, l);
+ // case OWFN: return __owfn::output(os, l);
   case PNML: return __pnml::output(os, l);
 
   default: PNAPI_ASSERT(false);
@@ -266,7 +271,7 @@ std::ostream & operator<<(std::ostream & os, const formula::Negation & f)
   {
   case DOT:  return __dot::output(os, f);
   case LOLA: return __lola::output(os, f);
-  case OWFN: return __owfn::output(os, f);
+ // case OWFN: return __owfn::output(os, f);
   case PNML: return __pnml::output(os, f);
 
   default: PNAPI_ASSERT(false);
@@ -283,7 +288,7 @@ std::ostream & operator<<(std::ostream & os, const formula::Conjunction & f)
   {
   case DOT:  return __dot::output(os, f);
   case LOLA: return __lola::output(os, f);
-  case OWFN: return __owfn::output(os, f);
+ // case OWFN: return __owfn::output(os, f);
   case PNML: return __pnml::output(os, f);
 
   default: PNAPI_ASSERT(false);
@@ -300,7 +305,7 @@ std::ostream & operator<<(std::ostream & os, const formula::Disjunction & f)
   {
   case DOT:  return __dot::output(os, f);
   case LOLA: return __lola::output(os, f);
-  case OWFN: return __owfn::output(os, f);
+ // case OWFN: return __owfn::output(os, f);
   case PNML: return __pnml::output(os, f);
 
   default: PNAPI_ASSERT(false);
@@ -317,7 +322,7 @@ std::ostream & operator<<(std::ostream & os, const formula::FormulaTrue & f)
   {
   case DOT:  return __dot::output(os, f);
   case LOLA: return __lola::output(os, f);
-  case OWFN: return __owfn::output(os, f);
+ // case OWFN: return __owfn::output(os, f);
   case PNML: return __pnml::output(os, f);
 
   default: PNAPI_ASSERT(false);
@@ -334,7 +339,7 @@ std::ostream & operator<<(std::ostream & os, const formula::FormulaFalse & f)
   {
   case DOT:  return __dot::output(os, f);
   case LOLA: return __lola::output(os, f);
-  case OWFN: return __owfn::output(os, f);
+ // case OWFN: return __owfn::output(os, f);
   case PNML: return __pnml::output(os, f);
 
   default: PNAPI_ASSERT(false);
@@ -351,7 +356,7 @@ std::ostream & operator<<(std::ostream & os, const formula::FormulaEqual & f)
   {
   case DOT:  return __dot::output(os, f);
   case LOLA: return __lola::output(os, f);
-  case OWFN: return __owfn::output(os, f);
+ // case OWFN: return __owfn::output(os, f);
   case PNML: return __pnml::output(os, f);
 
   default: PNAPI_ASSERT(false);
@@ -368,7 +373,7 @@ std::ostream & operator<<(std::ostream & os, const formula::FormulaNotEqual & f)
   {
   case DOT:  return __dot::output(os, f);
   case LOLA: return __lola::output(os, f);
-  case OWFN: return __owfn::output(os, f);
+ // case OWFN: return __owfn::output(os, f);
   case PNML: return __pnml::output(os, f);
 
   default: PNAPI_ASSERT(false);
@@ -385,7 +390,7 @@ std::ostream & operator<<(std::ostream & os, const formula::FormulaGreater & f)
   {
   case DOT:  return __dot::output(os, f);
   case LOLA: return __lola::output(os, f);
-  case OWFN: return __owfn::output(os, f);
+ // case OWFN: return __owfn::output(os, f);
   case PNML: return __pnml::output(os, f);
 
   default: PNAPI_ASSERT(false);
@@ -402,7 +407,7 @@ std::ostream & operator<<(std::ostream & os, const formula::FormulaGreaterEqual 
   {
   case DOT:  return __dot::output(os, f);
   case LOLA: return __lola::output(os, f);
-  case OWFN: return __owfn::output(os, f);
+//  case OWFN: return __owfn::output(os, f);
   case PNML: return __pnml::output(os, f);
 
   default: PNAPI_ASSERT(false);
@@ -419,7 +424,7 @@ std::ostream & operator<<(std::ostream & os, const formula::FormulaLess & f)
   {
   case DOT:  return __dot::output(os, f);
   case LOLA: return __lola::output(os, f);
-  case OWFN: return __owfn::output(os, f);
+ // case OWFN: return __owfn::output(os, f);
   case PNML: return __pnml::output(os, f);
 
   default: PNAPI_ASSERT(false);
@@ -436,7 +441,7 @@ std::ostream & operator<<(std::ostream & os, const formula::FormulaLessEqual & f
   {
   case DOT:  return __dot::output(os, f);
   case LOLA: return __lola::output(os, f);
-  case OWFN: return __owfn::output(os, f);
+//  case OWFN: return __owfn::output(os, f);
   case PNML: return __pnml::output(os, f);
 
   default: PNAPI_ASSERT(false);
@@ -453,7 +458,7 @@ std::ostream & operator<<(std::ostream & os, const std::pair<std::string, std::s
 {
   switch (FormatData::data(os))
   {
-  case OWFN: return __owfn::output(os, p);
+ // case OWFN: return __owfn::output(os, p);
   //case DOT:  return __dot::output(os, p);
 
   default: PNAPI_ASSERT(false);
@@ -467,7 +472,7 @@ std::ostream & operator<<(std::ostream & os, const std::pair<unsigned int, std::
 {
     switch (FormatData::data(os))
     {
-        case OWFN: return __owfn::output(os, p);
+      //  case OWFN: return __owfn::output(os, p);
         
         default: PNAPI_ASSERT(false);
     }
@@ -476,6 +481,7 @@ std::ostream & operator<<(std::ostream & os, const std::pair<unsigned int, std::
 /*!
  * \brief state output
  */
+/*
 std::ostream & operator<<(std::ostream & os, const State & s)
 {
   switch(FormatData::data(os))
@@ -485,10 +491,12 @@ std::ostream & operator<<(std::ostream & os, const State & s)
   default: PNAPI_ASSERT(false); // unsupported format
   }
 }
+*/
 
 /*!
  * \brief edge output
  */
+/*
 std::ostream & operator<<(std::ostream & os, const Edge & e)
 {
   switch(FormatData::data(os))
@@ -498,6 +506,7 @@ std::ostream & operator<<(std::ostream & os, const Edge & e)
   default: PNAPI_ASSERT(false); // unsupported format
   }
 }
+*/
 
 } /* namespace util */
 

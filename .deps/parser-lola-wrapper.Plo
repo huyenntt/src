@@ -100,10 +100,10 @@ parser-lola-wrapper.lo: parser-lola-wrapper.cc config.h \
  /usr/include/c++/4.7/bits/vector.tcc interface.h port.h \
  /usr/include/inttypes.h \
  /usr/lib/gcc/x86_64-linux-gnu/4.7/include/stdint.h /usr/include/stdint.h \
- state.h /usr/include/c++/4.7/sstream \
- /usr/include/c++/4.7/bits/sstream.tcc parser-lola.h parser-lola-stack.h \
- parser-lola-location.h parser-lola-position.h automaton.h Output.h \
- marking.h /usr/include/c++/4.7/cstring /usr/include/string.h
+ /usr/include/c++/4.7/sstream /usr/include/c++/4.7/bits/sstream.tcc \
+ parser-lola.h parser-lola-stack.h parser-lola-location.h \
+ parser-lola-position.h marking.h /usr/include/c++/4.7/cstring \
+ /usr/include/string.h
 
 config.h:
 
@@ -393,8 +393,6 @@ port.h:
 
 /usr/include/stdint.h:
 
-state.h:
-
 /usr/include/c++/4.7/sstream:
 
 /usr/include/c++/4.7/bits/sstream.tcc:
@@ -406,10 +404,6 @@ parser-lola-stack.h:
 parser-lola-location.h:
 
 parser-lola-position.h:
-
-automaton.h:
-
-Output.h:
 
 marking.h:
 

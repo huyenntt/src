@@ -50,7 +50,7 @@ class Arc;
 class Interface;
 class Port;
 class Label;
-class Automaton;
+//class Automaton;
 class State;
 class Edge;
 namespace formula
@@ -126,9 +126,9 @@ std::ostream & operator<<(std::ostream &, const exception::Error &);
 std::ostream & operator<<(std::ostream &, const util::Manipulator<
     std::pair<MetaInformation, std::string> > &);
 /// %Automaton output
-std::ostream & operator<<(std::ostream &, const Automaton &);
+//std::ostream & operator<<(std::ostream &, const Automaton &);
 /// %Automaton input
-std::istream & operator>>(std::istream &, Automaton &);
+//std::istream & operator>>(std::istream &, Automaton &);
 //@}
 
 
@@ -148,7 +148,7 @@ std::ostream & stat(std::ostream &);
 /// GraphViz DOT output format
 std::ostream & dot(std::ostream &);
 /// Service Automaton (SA) file format
-std::ios_base & sa(std::ios_base &);
+//std::ios_base & sa(std::ios_base &);
 /// LOLA file format
 std::ios_base & lola(std::ios_base &);
 /// PNML file format
@@ -189,7 +189,7 @@ enum Format {
   /// dot output
   DOT,
   /// service automaton
-  SA,
+ // SA,
   /// LoLA format
   LOLA,
   /// petri net modeling language (?)
@@ -225,7 +225,7 @@ namespace __stat
 /// petri net statistics
 std::ostream & output(std::ostream &, const PetriNet &);
 /// service autotmaton statistics
-std::ostream & output(std::ostream &, const Automaton &);
+//std::ostream & output(std::ostream &, const Automaton &);
 }
 
 
@@ -371,7 +371,7 @@ std::string getNodeName(std::ostream &, const Node &, bool = false);
 /// get a unique label name for dot output
 std::string getLabelName(std::ostream &, const Label &, bool = false);
 /// automaton output
-std::ostream & output(std::ostream &, const Automaton &);
+//std::ostream & output(std::ostream &, const Automaton &);
 }
 
 
@@ -434,6 +434,7 @@ std::ostream & output(std::ostream &, const std::pair<unsigned int, std::set<Pla
 /*!
  * \brief Service Automaton I/O Implementation
  */
+/*
 namespace __sa
 {
 /// automaton output
@@ -443,7 +444,7 @@ std::ostream & output(std::ostream &, const State &);
 /// edges output
 std::ostream & output(std::ostream &, const Edge &);
 }
-
+*/
 
 //****************************
 //*** Woflan output format ***
